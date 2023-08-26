@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:stdev_task/features/contacts/core/common_functions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stdev_task/core/common_functions.dart';
+import 'package:stdev_task/core/failure/general_failure.dart';
+import 'package:stdev_task/features/contacts/application/all_contact/all_contact_bloc.dart';
 import 'package:stdev_task/features/contacts/domain/contact_model.dart';
 import 'package:stdev_task/features/contacts/presentation/contact_detail_screen.dart';
 
 class ContactListScreen extends StatelessWidget {
-  final List<ContactModel> contacts = [
-    ContactModel(
-        firstName: 'Jon',
-        lastName: 'Doe',
-        phone: '123-456-7890',
-        email: 'jonDoe@Gmail.com',
-        notes: 'he is a good person',
-        pictureUrl: 'https://via.placeholder.com/150'),
-    ContactModel(
-        firstName: 'Jon',
-        lastName: 'Smiths',
-        phone: '883-496-7890',
-        email: 'jonDoe@Gmail.com',
-        notes: 'he is a good person',
-        pictureUrl: 'https://via.placeholder.com/150'),
-    // Add more contacts here
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final AllContactState state = context.watch<AllContactBloc>().state;
     return Scaffold(
       appBar: AppBar(
         title: Text('Contact List'),
       ),
-      body: ContactList(contacts: contacts),
+      body: state.allContacts.fold(
+          () => Center(child: CircularProgressIndicator()),
+          (a) => a.fold(
+                (l) => Center(
+                  child: Text(
+                    l
+                        .map(
+                          unexpected: (value) => 'something is wrong',
+                          noConnection: (value) =>
+                              'Please check your connection',
+                        )
+                        .toUpperCase(),
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                (r) => ContactList(contacts: r),
+              )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.push(ContactDetailsScreen());
@@ -81,7 +83,9 @@ class ContactTile extends StatelessWidget {
         contentPadding: EdgeInsets.all(16),
         leading: CircleAvatar(
           radius: 30,
-          backgroundImage: NetworkImage(contact.pictureUrl ?? ''),
+          backgroundImage: contact.pictureUrl == null
+              ? null
+              : NetworkImage(contact.pictureUrl ?? ''),
         ),
         title: Text(
           contact.firstName + ' ' + contact.lastName,
