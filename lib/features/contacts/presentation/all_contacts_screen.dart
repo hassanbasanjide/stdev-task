@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stdev_task/features/contacts/core/common_functions.dart';
 import 'package:stdev_task/features/contacts/domain/contact_model.dart';
 import 'package:stdev_task/features/contacts/presentation/contact_detail_screen.dart';
 
@@ -9,14 +10,14 @@ class ContactListScreen extends StatelessWidget {
         lastName: 'Doe',
         phone: '123-456-7890',
         email: 'jonDoe@Gmail.com',
-        notes: 'he is good person',
+        notes: 'he is a good person',
         pictureUrl: 'https://via.placeholder.com/150'),
     ContactModel(
         firstName: 'Jon',
         lastName: 'Smiths',
         phone: '883-496-7890',
         email: 'jonDoe@Gmail.com',
-        notes: 'he is good person',
+        notes: 'he is a good person',
         pictureUrl: 'https://via.placeholder.com/150'),
     // Add more contacts here
   ];
@@ -28,6 +29,12 @@ class ContactListScreen extends StatelessWidget {
         title: Text('Contact List'),
       ),
       body: ContactList(contacts: contacts),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.push(ContactDetailsScreen());
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
@@ -39,6 +46,13 @@ class ContactList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (contacts.isEmpty) {
+      return Center(
+        child: Text(
+            'No contacts available. Tap the + button to add a new contact.'),
+      );
+    }
+
     return ListView.builder(
       itemCount: contacts.length,
       itemBuilder: (context, index) {
@@ -56,12 +70,7 @@ class ContactTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void onTapContact() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ContactDetailsScreen(contact: contact),
-        ),
-      );
+      context.push(ContactDetailsScreen(contact: contact));
     }
 
     return Card(
@@ -75,7 +84,7 @@ class ContactTile extends StatelessWidget {
           backgroundImage: NetworkImage(contact.pictureUrl ?? ''),
         ),
         title: Text(
-          contact.firstName + contact.lastName,
+          contact.firstName + ' ' + contact.lastName,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(

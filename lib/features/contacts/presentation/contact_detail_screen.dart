@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:stdev_task/features/contacts/domain/contact_model.dart';
 
 class ContactDetailsScreen extends StatelessWidget {
-  final ContactModel contact;
+  final ContactModel? contact;
 
-  const ContactDetailsScreen({Key? key, required this.contact})
+  const ContactDetailsScreen({Key? key,  this.contact})
       : super(key: key);
 
   @override
@@ -22,35 +22,35 @@ class ContactDetailsScreen extends StatelessWidget {
               SizedBox(height: 20),
               CircleAvatar(
                 radius: 60,
-                backgroundImage: NetworkImage(contact.pictureUrl ?? ''),
+                backgroundImage: NetworkImage(contact?.pictureUrl ?? ''),
               ),
               SizedBox(height: 20),
               _buildContactTextField(
                 icon: Icons.person,
                 hintText: 'First Name',
-                initialValue: contact.firstName,
+                initialValue: contact?.firstName,
               ),
               SizedBox(height: 20),
               _buildContactTextField(
                 icon: Icons.person,
                 hintText: 'Last Name',
-                initialValue: contact.lastName,
+                initialValue: contact?.lastName,
               ),
               SizedBox(height: 20),
               _buildContactTextField(
                 icon: Icons.phone,
                 hintText: 'Phone',
-                initialValue: contact.phone,
+                initialValue: contact?.phone,
               ),
               SizedBox(height: 20),
               _buildContactTextField(
                 icon: Icons.email,
                 hintText: 'Email',
-                initialValue: contact.email,
+                initialValue: contact?.email,
               ),
               SizedBox(height: 16),
               TextFormField(
-                initialValue: contact.notes,
+                initialValue: contact?.notes,
                 maxLines: 3,
                 style: TextStyle(fontSize: 16),
                 decoration: InputDecoration(
@@ -69,7 +69,7 @@ class ContactDetailsScreen extends StatelessWidget {
   Widget _buildContactTextField(
       {required IconData icon,
       required String hintText,
-      required String initialValue}) {
+      String? initialValue}) {
     return TextFormField(
       initialValue: initialValue,
       style: TextStyle(fontSize: 16),
