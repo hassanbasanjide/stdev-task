@@ -14,8 +14,9 @@ _$_ContactDto _$$_ContactDtoFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       notes: json['notes'] as String?,
-      picture:
-          (json['picture'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      picture: (json['picture'] as List<dynamic>?)
+          ?.map((e) => e as String?)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ContactDtoToJson(_$_ContactDto instance) =>

@@ -27,9 +27,8 @@ class ContactListScreen extends StatelessWidget {
                     children: [
                       Text(
                         l
-                            .map(
-                              unexpected: (value) =>
-                                  ' sorry something is wrong ;(',
+                            .maybeMap(
+                              orElse: () => 'sorry something is wrong ;(',
                               noConnection: (value) =>
                                   'Please check your connection',
                             )
@@ -74,6 +73,7 @@ class ContactList extends StatelessWidget {
 
     return ListView.builder(
       itemCount: contacts.length,
+      padding: EdgeInsets.fromLTRB(0, 10, 0, 90),
       itemBuilder: (context, index) {
         return ContactTile(contact: contacts[index]);
       },

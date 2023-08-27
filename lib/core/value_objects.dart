@@ -58,7 +58,7 @@ class Name extends ValueObject<String> {
 
   factory Name(String name, {bool isRequired = false}) {
     return Name._(
-      maxStringLengthValidator(name, 500)
+      maxStringLengthValidator(name, 5000)
           .flatMap((a) => notEmptyValidator(enable: isRequired, value: a))
           .flatMap(nameValidator),
       isRequired: isRequired,
@@ -81,7 +81,7 @@ class NotEmpty extends ValueObject<String> {
 
   factory NotEmpty(String input, {bool isRequired = false}) {
     return NotEmpty._(
-      maxStringLengthValidator(input, 500)
+      maxStringLengthValidator(input, 5000)
           .flatMap((a) => notEmptyValidator(enable: isRequired, value: a)),
       isRequired: isRequired,
     );

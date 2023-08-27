@@ -33,7 +33,7 @@ mixin _$ContactDto {
   @JsonKey(name: 'notes')
   String? get notes => throw _privateConstructorUsedError;
   @JsonKey(name: 'picture')
-  List<String>? get picture => throw _privateConstructorUsedError;
+  List<String?>? get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +54,7 @@ abstract class $ContactDtoCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'phone') String? phone,
       @JsonKey(name: 'notes') String? notes,
-      @JsonKey(name: 'picture') List<String>? picture});
+      @JsonKey(name: 'picture') List<String?>? picture});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class _$ContactDtoCopyWithImpl<$Res, $Val extends ContactDto>
       picture: freezed == picture
           ? _value.picture
           : picture // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String?>?,
     ) as $Val);
   }
 }
@@ -126,7 +126,7 @@ abstract class _$$_ContactDtoCopyWith<$Res>
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'phone') String? phone,
       @JsonKey(name: 'notes') String? notes,
-      @JsonKey(name: 'picture') List<String>? picture});
+      @JsonKey(name: 'picture') List<String?>? picture});
 }
 
 /// @nodoc
@@ -176,7 +176,7 @@ class __$$_ContactDtoCopyWithImpl<$Res>
       picture: freezed == picture
           ? _value._picture
           : picture // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String?>?,
     ));
   }
 }
@@ -191,7 +191,7 @@ class _$_ContactDto extends _ContactDto {
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'phone') this.phone,
       @JsonKey(name: 'notes') this.notes,
-      @JsonKey(name: 'picture') final List<String>? picture})
+      @JsonKey(name: 'picture') final List<String?>? picture})
       : _picture = picture,
         super._();
 
@@ -216,10 +216,10 @@ class _$_ContactDto extends _ContactDto {
   @override
   @JsonKey(name: 'notes')
   final String? notes;
-  final List<String>? _picture;
+  final List<String?>? _picture;
   @override
   @JsonKey(name: 'picture')
-  List<String>? get picture {
+  List<String?>? get picture {
     final value = _picture;
     if (value == null) return null;
     if (_picture is EqualUnmodifiableListView) return _picture;
@@ -275,7 +275,7 @@ abstract class _ContactDto extends ContactDto {
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'phone') final String? phone,
       @JsonKey(name: 'notes') final String? notes,
-      @JsonKey(name: 'picture') final List<String>? picture}) = _$_ContactDto;
+      @JsonKey(name: 'picture') final List<String?>? picture}) = _$_ContactDto;
   _ContactDto._() : super._();
 
   factory _ContactDto.fromJson(Map<String, dynamic> json) =
@@ -301,7 +301,7 @@ abstract class _ContactDto extends ContactDto {
   String? get notes;
   @override
   @JsonKey(name: 'picture')
-  List<String>? get picture;
+  List<String?>? get picture;
   @override
   @JsonKey(ignore: true)
   _$$_ContactDtoCopyWith<_$_ContactDto> get copyWith =>

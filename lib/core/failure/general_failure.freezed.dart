@@ -20,18 +20,21 @@ mixin _$GeneralFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() noConnection,
+    required TResult Function() apiKeyExpired,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? noConnection,
+    TResult? Function()? apiKeyExpired,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? noConnection,
+    TResult Function()? apiKeyExpired,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$GeneralFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_NoConnection value) noConnection,
+    required TResult Function(_ApiKeyExpired value) apiKeyExpired,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_NoConnection value)? noConnection,
+    TResult? Function(_ApiKeyExpired value)? apiKeyExpired,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_NoConnection value)? noConnection,
+    TResult Function(_ApiKeyExpired value)? apiKeyExpired,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$_Unexpected implements _Unexpected {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() noConnection,
+    required TResult Function() apiKeyExpired,
   }) {
     return unexpected();
   }
@@ -123,6 +130,7 @@ class _$_Unexpected implements _Unexpected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? noConnection,
+    TResult? Function()? apiKeyExpired,
   }) {
     return unexpected?.call();
   }
@@ -132,6 +140,7 @@ class _$_Unexpected implements _Unexpected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? noConnection,
+    TResult Function()? apiKeyExpired,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -145,6 +154,7 @@ class _$_Unexpected implements _Unexpected {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_NoConnection value) noConnection,
+    required TResult Function(_ApiKeyExpired value) apiKeyExpired,
   }) {
     return unexpected(this);
   }
@@ -154,6 +164,7 @@ class _$_Unexpected implements _Unexpected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_NoConnection value)? noConnection,
+    TResult? Function(_ApiKeyExpired value)? apiKeyExpired,
   }) {
     return unexpected?.call(this);
   }
@@ -163,6 +174,7 @@ class _$_Unexpected implements _Unexpected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_NoConnection value)? noConnection,
+    TResult Function(_ApiKeyExpired value)? apiKeyExpired,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -216,6 +228,7 @@ class _$_NoConnection implements _NoConnection {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() noConnection,
+    required TResult Function() apiKeyExpired,
   }) {
     return noConnection();
   }
@@ -225,6 +238,7 @@ class _$_NoConnection implements _NoConnection {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? noConnection,
+    TResult? Function()? apiKeyExpired,
   }) {
     return noConnection?.call();
   }
@@ -234,6 +248,7 @@ class _$_NoConnection implements _NoConnection {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? noConnection,
+    TResult Function()? apiKeyExpired,
     required TResult orElse(),
   }) {
     if (noConnection != null) {
@@ -247,6 +262,7 @@ class _$_NoConnection implements _NoConnection {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_NoConnection value) noConnection,
+    required TResult Function(_ApiKeyExpired value) apiKeyExpired,
   }) {
     return noConnection(this);
   }
@@ -256,6 +272,7 @@ class _$_NoConnection implements _NoConnection {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_NoConnection value)? noConnection,
+    TResult? Function(_ApiKeyExpired value)? apiKeyExpired,
   }) {
     return noConnection?.call(this);
   }
@@ -265,6 +282,7 @@ class _$_NoConnection implements _NoConnection {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_NoConnection value)? noConnection,
+    TResult Function(_ApiKeyExpired value)? apiKeyExpired,
     required TResult orElse(),
   }) {
     if (noConnection != null) {
@@ -276,4 +294,112 @@ class _$_NoConnection implements _NoConnection {
 
 abstract class _NoConnection implements GeneralFailure {
   factory _NoConnection() = _$_NoConnection;
+}
+
+/// @nodoc
+abstract class _$$_ApiKeyExpiredCopyWith<$Res> {
+  factory _$$_ApiKeyExpiredCopyWith(
+          _$_ApiKeyExpired value, $Res Function(_$_ApiKeyExpired) then) =
+      __$$_ApiKeyExpiredCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ApiKeyExpiredCopyWithImpl<$Res>
+    extends _$GeneralFailureCopyWithImpl<$Res, _$_ApiKeyExpired>
+    implements _$$_ApiKeyExpiredCopyWith<$Res> {
+  __$$_ApiKeyExpiredCopyWithImpl(
+      _$_ApiKeyExpired _value, $Res Function(_$_ApiKeyExpired) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ApiKeyExpired implements _ApiKeyExpired {
+  _$_ApiKeyExpired();
+
+  @override
+  String toString() {
+    return 'GeneralFailure.apiKeyExpired()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ApiKeyExpired);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() noConnection,
+    required TResult Function() apiKeyExpired,
+  }) {
+    return apiKeyExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? noConnection,
+    TResult? Function()? apiKeyExpired,
+  }) {
+    return apiKeyExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noConnection,
+    TResult Function()? apiKeyExpired,
+    required TResult orElse(),
+  }) {
+    if (apiKeyExpired != null) {
+      return apiKeyExpired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoConnection value) noConnection,
+    required TResult Function(_ApiKeyExpired value) apiKeyExpired,
+  }) {
+    return apiKeyExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(_NoConnection value)? noConnection,
+    TResult? Function(_ApiKeyExpired value)? apiKeyExpired,
+  }) {
+    return apiKeyExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoConnection value)? noConnection,
+    TResult Function(_ApiKeyExpired value)? apiKeyExpired,
+    required TResult orElse(),
+  }) {
+    if (apiKeyExpired != null) {
+      return apiKeyExpired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApiKeyExpired implements GeneralFailure {
+  factory _ApiKeyExpired() = _$_ApiKeyExpired;
 }

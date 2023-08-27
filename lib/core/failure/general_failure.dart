@@ -5,4 +5,5 @@ part 'general_failure.freezed.dart';
 class GeneralFailure with _$GeneralFailure {
   factory GeneralFailure.unexpected() = _Unexpected;
   factory GeneralFailure.noConnection() = _NoConnection;
+  factory GeneralFailure.apiKeyExpired() = _ApiKeyExpired;
 }

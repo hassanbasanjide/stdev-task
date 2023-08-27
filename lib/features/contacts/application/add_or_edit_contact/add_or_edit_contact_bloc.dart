@@ -25,7 +25,26 @@ class AddOrEditContactBloc
     emit(state.copyWith(showError: false, saveContactResult: none()));
     return event.map(
       saveContact: (e) async {
-        emit(state.copyWith(showError: true));
+        final bool isAllFieldValid = state.email.isValid() &&
+            state.firstname.isValid() &&
+            state.lastname.isValid() &&
+            state.phoneNumber.isValid() &&
+            state.notes.isValid();
+        emit(state.copyWith(showError: true, isLoading: isAllFieldValid));
+        if (isAllFieldValid) {
+          late Either<GeneralFailure, Unit> result;
+          result = await contactRepository.addOrEditContact(
+            firstname: state.firstname.getString() ?? '',
+            lastname: state.lastname.getString() ?? '',
+            contactId: e.contactId,
+            phone: state.phoneNumber.getString() ?? '',
+            email: state.email.getString() ?? '',
+            notes: state.notes.getString() ?? '',
+            avatar: state.avatar.toNullable(),
+          );
+          emit(state.copyWith(
+              isLoading: false, saveContactResult: some(result)));
+        }
       },
       avatarChanged: (e) async {
         emit(state.copyWith(avatar: some(ContactImage.file(e.file))));

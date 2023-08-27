@@ -10,8 +10,6 @@ Either<ValueFailure, String> mobileNumberValidator(String mobileNumber) {
   }
 }
 
-
-
 Either<ValueFailure, String> emailValidator(String email) {
   if (email.isEmpty) {
     return right(email);

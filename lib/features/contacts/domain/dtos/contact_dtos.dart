@@ -14,7 +14,7 @@ class ContactDto with _$ContactDto {
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'phone') String? phone,
     @JsonKey(name: 'notes') String? notes,
-    @JsonKey(name: 'picture') List<String>? picture,
+    @JsonKey(name: 'picture') List<String?>? picture,
   }) = _ContactDto;
   ContactModel toDomain() {
     String? imageUrl;
