@@ -22,6 +22,7 @@ class ContactDto with _$ContactDto {
       imageUrl = picture!.first;
     }
     return ContactModel(
+      id: id,
       firstName: firstname ?? '',
       lastName: lastname ?? '',
       phone: phone ?? '',

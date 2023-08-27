@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stdev_task/core/common_functions.dart';
-import 'package:stdev_task/core/failure/general_failure.dart';
 import 'package:stdev_task/features/contacts/application/all_contact/all_contact_bloc.dart';
 import 'package:stdev_task/features/contacts/domain/contact_model.dart';
 import 'package:stdev_task/features/contacts/presentation/contact_detail_screen.dart';
@@ -10,6 +9,11 @@ class ContactListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AllContactState state = context.watch<AllContactBloc>().state;
+    final AllContactBloc bloc = context.read<AllContactBloc>();
+    void reloadScreen() {
+      bloc.add(AllContactEvent.fetchData());
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Contact List'),
@@ -18,15 +22,28 @@ class ContactListScreen extends StatelessWidget {
           () => Center(child: CircularProgressIndicator()),
           (a) => a.fold(
                 (l) => Center(
-                  child: Text(
-                    l
-                        .map(
-                          unexpected: (value) => 'something is wrong',
-                          noConnection: (value) =>
-                              'Please check your connection',
-                        )
-                        .toUpperCase(),
-                    style: TextStyle(fontSize: 18),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        l
+                            .map(
+                              unexpected: (value) =>
+                                  ' sorry something is wrong ;(',
+                              noConnection: (value) =>
+                                  'Please check your connection',
+                            )
+                            .toLowerCase(),
+                        style: TextStyle(fontSize: 28),
+                      ),
+                      TextButton(
+                        onPressed: reloadScreen,
+                        child: Text(
+                          'Retry again',
+                          style: TextStyle(color: Colors.amber, fontSize: 20),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 (r) => ContactList(contacts: r),
@@ -82,6 +99,7 @@ class ContactTile extends StatelessWidget {
         onTap: onTapContact,
         contentPadding: EdgeInsets.all(16),
         leading: CircleAvatar(
+          child: contact.pictureUrl == null ? Icon(Icons.person) : null,
           radius: 30,
           backgroundImage: contact.pictureUrl == null
               ? null
