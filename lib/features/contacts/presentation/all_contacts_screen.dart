@@ -22,27 +22,33 @@ class ContactListScreen extends StatelessWidget {
           () => Center(child: CircularProgressIndicator()),
           (a) => a.fold(
                 (l) => Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        l
-                            .maybeMap(
-                              orElse: () => 'sorry something is wrong ;(',
-                              noConnection: (value) =>
-                                  'Please check your connection',
-                            )
-                            .toLowerCase(),
-                        style: TextStyle(fontSize: 28),
-                      ),
-                      TextButton(
-                        onPressed: reloadScreen,
-                        child: Text(
-                          'Retry again',
-                          style: TextStyle(color: Colors.amber, fontSize: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          l.maybeMap(
+                            orElse: () => 'sorry something is wrong ;(',
+                            noConnection: (value) =>
+                                'Please check your connection',
+                          ),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 22),
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: reloadScreen,
+                          child: Text(
+                            'Try again',
+                            style:
+                                TextStyle(color: Colors.purple, fontSize: 20),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 (r) => ContactList(contacts: r),
